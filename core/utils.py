@@ -1,3 +1,4 @@
+import re
 import PyPDF2
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -63,6 +64,7 @@ def generate_summary(text, percentage=0.5):
 
     # convert to a string
     summary = " ".join(final_summary)
+    cleaned_text = re.sub(r"(?<=[a-zA-Z])[\t\n]+(?=[a-zA-Z])", "", summary)
 
     # Return final summary
-    return summary
+    return cleaned_text
